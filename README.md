@@ -1,2 +1,1 @@
-# stepic_course_final_project
-stepic_course_final_project
+Репозиторий с финальным проектом курса stepic.org "Автоматизация тестирования с помощью Selenium и Python"
