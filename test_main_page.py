@@ -11,4 +11,15 @@ def test_guest_can_go_to_login_page(browser):
     page = MainPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
     # conftest.py) и url
     page.open()  # Открываем страницу
-    page.go_to_login_page()  # Выполняем метод страницы (класс BaseObject) и переходим на страницу логина
+    page.go_to_login_page()  # Переходим на страницу логина
+
+
+'''Тест проверяет наличие кнопки логина на основной странице'''
+
+
+def test_should_be_login_link(browser):
+    link = 'http://selenium1py.pythonanywhere.com/'
+    page = MainPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
+    # conftest.py) и url
+    page.open()  # Открываем страницу
+    page.should_be_login_link()  # Ищем кнопку логина на основной странице
