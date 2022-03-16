@@ -1,4 +1,4 @@
-'''Файл с тестами главной страницы'''
+"""Файл с тестами главной страницы"""
 
 link = 'http://selenium1py.pythonanywhere.com/'
 
@@ -6,9 +6,7 @@ link = 'http://selenium1py.pythonanywhere.com/'
 В качестве аргумента функции передается фикстура browser из файла conftest.py'''
 
 
-def go_to_login_page(browser):
-    login_link = browser.find_element_by_css_selector("#login_link")
-    login_link.click()
+
 
 
 def test_guest_can_go_to_login_page(browser):
