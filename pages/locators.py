@@ -16,3 +16,17 @@ class MainPageLocators:
 class LoginPageLocators:
     LOGIN_FORM = (By.CSS_SELECTOR, '#login_form')  # Селектор формы логина
     REGISTER_FORM = (By.CSS_SELECTOR, '#register_form')  # Селектор формы регистрации
+
+
+'''Селекторы на карточках товара'''
+
+
+class ProductPageLocators:
+    ADD_TO_BASKET_BUTTON = (By.CSS_SELECTOR, 'button.btn-add-to-basket')  # Селектор кнопки "Добавить в корзину"
+    PRODUCT_ADD_TO_BASKET_NAME = (By.CSS_SELECTOR, 'div.alertinner>strong')  # Селектор наименования товара из
+    # всплывающего сообщения после добавления товара в корзину
+    PRODUCT_ADD_TO_BASKET_PRICE = (By.CSS_SELECTOR, 'div.alertinner>p>strong')  # Селектор цены из всплывающего
+    # сообщения после добавления товара в корзину
+    PRODUCT_NAME = (By.CSS_SELECTOR, 'div>h1')  # Селектор имени товара
+    PRODUCT_PRICE = (By.CSS_SELECTOR, 'p.price_color')  # Селектор цены товара. Селектор не уникальный, но первый в
+    # списке нам подходит

@@ -13,9 +13,9 @@ def test_guest_can_go_to_login_page(browser):
     # conftest.py) и url
     page.open()  # Открываем страницу
     page.go_to_login_page()  # Переходим на страницу логина
-    login_page = LoginPage(browser, browser.current_url) # Инициализируем LoginPage, передаем браузер и текущий URL
+    login_page = LoginPage(browser, browser.current_url)  # Инициализируем LoginPage, передаем браузер и текущий URL
     # страницы - должен быть URL страницы логина
-    login_page.should_be_login_page() # Проверяем наличие login в текущем URL и наличие форм логина и регистрации
+    login_page.should_be_login_page()  # Проверяем наличие login в текущем URL и наличие форм логина и регистрации
     # пользователя
 
 
