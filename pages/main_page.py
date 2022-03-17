@@ -1,4 +1,4 @@
-from pages.locators import *
+from pages.locators import MainPageLocators
 from pages.base_page import BasePage
 
 '''Файл содержит класс MainPage, описывающий главную страницу сайта'''
