@@ -8,7 +8,7 @@ class BasePage:
     def __init__(self, browser, link, timeout=10):
         self.browser = browser
         self.link = link
-        self.browser.implicity_wait(timeout)  # Указываем неявное ожидание
+        self.browser.implicitly_wait(timeout)  # Указываем неявное ожидание
 
     '''Метод для открытия страницы в браузере. Browser - из фикстуры, link из файлов с тестами'''
 
