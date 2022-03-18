@@ -3,6 +3,7 @@ from selenium.common.exceptions import NoSuchElementException, NoAlertPresentExc
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import TimeoutException
+from pages.locators import BasePageLocators
 
 """Класс описывает базовую страницу, от которой будут наследованы остальные страницы.
 Класс содержит вспомогательные методы по работе с драйвером"""
@@ -15,6 +16,17 @@ class BasePage:
         self.browser = browser
         self.link = link
         self.browser.implicitly_wait(timeout)  # Указываем неявное ожидание
+
+    '''Метод ищет кнопку с переходом на страницу логина и нажимает на нее'''
+
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        login_link.click()
+
+    '''Метод ищет кнопку с переходом на страницу логина'''
+
+    def should_be_login_link(self):
+        assert self.is_element_presented(*BasePageLocators.LOGIN_LINK), 'Login link not found'
 
     '''Метод для открытия страницы в браузере. Browser - из фикстуры, link из файлов с тестами'''
 

@@ -3,11 +3,20 @@ from selenium.webdriver.common.by import By
 '''Файл содержит селекторы всех элементов для тестов. Каждая константа представляет собой кортеж из двух элементов - 
 что ищем и как '''
 
+'''Селекторы абстрактной базовой страницы - подходят для любой страницы на сайте'''
+
+
+class BasePageLocators:
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # Селектор кнопки логина
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")  # Заведомо некорректный селектор для
+    # проверки сообщения об ошибке
+
+
 '''Селекторы на главной странице'''
 
 
 class MainPageLocators:
-    LOGIN_LINK = (By.CSS_SELECTOR, '#login_link')  # Селектор кнопки логина
+    pass
 
 
 '''Селекторы на странице логина'''
