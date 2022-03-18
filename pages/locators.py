@@ -10,6 +10,7 @@ class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")  # Селектор кнопки логина
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")  # Заведомо некорректный селектор для
     # проверки сообщения об ошибке
+    BASKET_LINK = (By.CSS_SELECTOR, 'div.basket-mini a')  # Селектор перехода в корзину
 
 
 '''Селекторы на главной странице'''
@@ -41,3 +42,10 @@ class ProductPageLocators:
     # списке нам подходит
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, 'div.alert-success')  # Селектор сообщения успешного добавления товара в
     # корзину - ищется первый элемент, для теста подходит
+
+
+'''Селекторы в корзине'''
+
+
+class BasketPageLocators:
+    EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, '#content_inner>p')  # Селектор сообщения пустой корзины

@@ -82,3 +82,8 @@ class BasePage:
         except TimeoutException:
             return False
         return True
+
+    """Метод позволяет перейти в корзину"""
+
+    def go_to_basket(self):
+        self.browser.find_element(*BasePageLocators.BASKET_LINK).click()

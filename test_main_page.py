@@ -1,3 +1,4 @@
+from pages.basket_page import BasketPage
 from pages.main_page import MainPage
 from pages.login_page import LoginPage
 
@@ -28,3 +29,16 @@ def test_should_be_login_link(browser):
     # conftest.py) и url
     page.open()  # Открываем страницу
     page.should_be_login_link()  # Ищем кнопку логина на основной странице
+
+
+'''Тест проверяет пустая ли корзина при переходе в нее с главной страницы'''
+
+
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+    link = 'http://selenium1py.pythonanywhere.com/'
+    page = MainPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
+    # conftest.py) и url
+    page.open()  # Открываем страницу
+    page.go_to_basket()  # Переходим в корзину
+    basket_page = BasketPage(browser, browser.current_url)  # Инициализируем PageObject корзины
+    basket_page.is_basket_empty()  # Проверяем пустая ли корзина
