@@ -30,3 +30,5 @@ class ProductPageLocators:
     PRODUCT_NAME = (By.CSS_SELECTOR, 'div>h1')  # Селектор имени товара
     PRODUCT_PRICE = (By.CSS_SELECTOR, 'p.price_color')  # Селектор цены товара. Селектор не уникальный, но первый в
     # списке нам подходит
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, 'div.alert-success')  # Селектор сообщения успешного добавления товара в
+    # корзину - ищется первый элемент, для теста подходит

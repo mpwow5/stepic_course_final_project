@@ -1,5 +1,8 @@
 import math
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.common.exceptions import TimeoutException
 
 """Класс описывает базовую страницу, от которой будут наследованы остальные страницы.
 Класс содержит вспомогательные методы по работе с драйвером"""
@@ -43,3 +46,27 @@ class BasePage:
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    """Метод проверяет что элемент не появляется на странице в течении заданного времени"""
+
+    def is_not_element_presented(self, how_locator, what_locator, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(expected_conditions.presence_of_element_located((how_locator,
+                                                                                                        what_locator)))
+            # Ищем элемент в течении 4 секунд. После того как элемент не появляется - ловим исключение и возвращаем
+            # True - элемент не найден.
+        except TimeoutException:
+            return True
+        return False  # Если исключение не было поймано - возвращаем False
+
+    """Метод проверяет что элемент пропадает после заданного времени"""
+
+    def is_disappeared(self, how_locator, what_locator, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1).until_not(
+                expected_conditions.presence_of_element_located((how_locator, what_locator)))  # В течении 4 секунд с
+            # заданным интервалом в 1 секунду проверяем что элемент исчез со страницы. Если за это время элемент не
+            # исчезает, ловим исключение и возвращаем False. Если элемент исчез - возвращаем True
+        except TimeoutException:
+            return False
+        return True

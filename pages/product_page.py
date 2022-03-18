@@ -31,3 +31,14 @@ class ProductPage(BasePage):
             *ProductPageLocators.PRODUCT_PRICE).text, 'Price in product cart and price in basket message is ' \
                                                       'different'  # Проверяем совпадения цены из
         # всплывающего сообщения и цены товара из карточки
+
+    """Метод проверяет что сообщение об успешном добавлении товара в корзину не появляется"""
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_presented(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is not " \
+                                                                                        "displayed "
+
+    """Метод проверяет что сообщение об успешном добавлении товара в корзину пропадает"""
+
+    def should_disappear_of_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), 'Success message is not disappeared'
