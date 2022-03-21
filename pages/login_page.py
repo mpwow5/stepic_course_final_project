@@ -1,5 +1,6 @@
 from pages.locators import LoginPageLocators
 from pages.base_page import BasePage
+import time
 
 '''Файл содержит класс LoginPage, описывающий страницу логина и регистрации сайта'''
 
@@ -26,3 +27,18 @@ class LoginPage(BasePage):
 
     def should_be_registration_form(self):
         assert self.is_element_presented(*LoginPageLocators.REGISTER_FORM), 'На странице отсутствует форма регистрации'
+
+    """Метод регистрации нового пользователя"""
+
+    def register_new_user(self):
+        random_email = str(time.time()) + '@test.ru'
+        password = '123456_AQWRT'
+        self.browser.find_element(*LoginPageLocators.EMAIL_FIELD_REGISTRATION).send_keys(random_email)
+        self.browser.find_element(*LoginPageLocators.PASSWORD_FIELD_REGISTRATION).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.PASSWORD_CONFIRM_FIELD_REGISTRATION).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON).click()
+
+
+
+
+

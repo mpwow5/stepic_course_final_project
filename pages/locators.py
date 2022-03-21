@@ -11,6 +11,7 @@ class BasePageLocators:
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")  # Заведомо некорректный селектор для
     # проверки сообщения об ошибке
     BASKET_LINK = (By.CSS_SELECTOR, 'div.basket-mini a')  # Селектор перехода в корзину
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user") # Селектор иконки зарегистрированного пользователя
 
 
 '''Селекторы на главной странице'''
@@ -26,6 +27,14 @@ class MainPageLocators:
 class LoginPageLocators:
     LOGIN_FORM = (By.CSS_SELECTOR, '#login_form')  # Селектор формы логина
     REGISTER_FORM = (By.CSS_SELECTOR, '#register_form')  # Селектор формы регистрации
+    EMAIL_FIELD_REGISTRATION = (By.CSS_SELECTOR, '#id_registration-email')  # Селектор поля для ввода почты при
+    # регистрации
+    PASSWORD_FIELD_REGISTRATION = (By.CSS_SELECTOR, '#id_registration-password1')  # Селектор поля для ввода пароля
+    # при регистрации
+    PASSWORD_CONFIRM_FIELD_REGISTRATION = (By.CSS_SELECTOR, '#id_registration-password2')  # Селектор поля для
+    # подтверждения пароля почты при регистрации
+    REGISTER_BUTTON = (By.NAME, 'registration_submit') # Селектор кнопки регистрации
+
 
 
 '''Селекторы на карточках товара'''

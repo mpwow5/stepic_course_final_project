@@ -87,3 +87,8 @@ class BasePage:
 
     def go_to_basket(self):
         self.browser.find_element(*BasePageLocators.BASKET_LINK).click()
+
+    """ Метод проверяет залогинен ли пользователь"""
+
+    def should_be_authorized_user(self):
+        assert self.is_element_presented(*BasePageLocators.USER_ICON), 'Пользователь незарегистрирован'
