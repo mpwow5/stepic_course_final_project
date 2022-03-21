@@ -105,10 +105,23 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     # пользователя
 
 
+'''Тест проверяет пустая ли корзина при переходе в нее с страницы товара'''
+
+
+@pytest.mark.need_review1
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+    page = ProductPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
+    # conftest.py) и url
+    page.open()  # Открываем страницу товара
+    page.go_to_basket()  # Переходим в корзину
+    basket_page = BasketPage(browser, browser.current_url)  # Инициализируем PageObject корзины
+    basket_page.is_basket_empty()  # Проверяем пустая ли корзина
+
+
 '''Тест проверяет пустая ли корзина при переходе в нее с главной страницы'''
 
 
-@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_login_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/'
     page = LoginPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
