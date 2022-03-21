@@ -27,7 +27,7 @@ class TestLoginFromMainPage:
     """Тест с проверкой возможности пользователя перейти с главной страницы на страницу логина
     В качестве аргумента функции передается фикстура browser из файла conftest.py"""
 
-    def test_guest_can_go_to_login_page(browser):
+    def test_guest_can_go_to_login_page(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/'
         page = MainPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
         # conftest.py) и url
@@ -40,7 +40,7 @@ class TestLoginFromMainPage:
 
     '''Тест проверяет наличие кнопки логина на основной странице'''
 
-    def test_should_be_login_link(browser):
+    def test_should_be_login_link(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/'
         page = MainPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
         # conftest.py) и url

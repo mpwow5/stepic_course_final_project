@@ -9,7 +9,7 @@ from pages.basket_page import BasketPage
 '''Тест проверяет добавление незарегистрированным пользователем товара в корзину'''
 
 
-
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):
     link = 'http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear'
     page = ProductPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
@@ -22,7 +22,6 @@ def test_guest_can_add_product_to_basket(browser):
 
 
 """Тест ищет нерабочую ссылку из переданных через фикстуру параметров. Функционал дублирует тест выше"""
-
 
 
 @pytest.mark.parametrize('offer', [0, 1, 2, 3, 4, 5, 6, 8, 9, pytest.param(7, marks=pytest.mark.skip)])  # Тест с 7 в
@@ -43,6 +42,7 @@ def test_guest_can_add_product_to_basket_with_offer(browser, offer):
 об успешном добавлении товара в корзину"""
 
 
+@pytest.mark.skip
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'  # Линк на товар без промоакции
     page = ProductPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
@@ -66,6 +66,7 @@ def test_guest_cant_see_success_message(browser):
 """Тест проверяет что после добавления товара в корзину пропадает сообщение об успешном добавлении товара в корзину"""
 
 
+@pytest.mark.skip
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'  # Линк на товар без промоакции
     page = ProductPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
@@ -91,7 +92,8 @@ def test_should_be_login_link(browser):
 В качестве аргумента функции передается фикстура browser из файла conftest.py'''
 
 
-def test_guest_can_go_to_login_page(browser):
+@pytest.mark.need_review
+def test_guest_can_go_to_login_page_from_product_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/'
     page = ProductPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
     # conftest.py) и url
@@ -106,6 +108,7 @@ def test_guest_can_go_to_login_page(browser):
 '''Тест проверяет пустая ли корзина при переходе в нее с главной страницы'''
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_login_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/'
     page = LoginPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
@@ -142,7 +145,7 @@ class TestUserAddToBasketFromProductPage:
 
     '''Тест проверяет добавление зарегистрированным пользователем товара в корзину'''
 
-
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/'
         page = ProductPage(browser, link)  # Инициализуем PageObject, передаем в конструктор экземпляр браузера (из
