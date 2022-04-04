@@ -5,36 +5,34 @@ from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import TimeoutException
 from pages.locators import BasePageLocators
 
-"""Класс описывает базовую страницу, от которой будут наследованы остальные страницы.
-Класс содержит вспомогательные методы по работе с драйвером"""
+"""Class BasePage describes base page which from other pages will be inherited.
+Class contains methods for working with the Webdriver """
 
 
 class BasePage:
-    '''Конструктор, вызывается при инициализации объекта BasePage.'''
 
     def __init__(self, browser, link, timeout=10):
         self.browser = browser
         self.link = link
-        self.browser.implicitly_wait(timeout)  # Указываем неявное ожидание
+        self.browser.implicitly_wait(timeout)
 
-    '''Метод ищет кнопку с переходом на страницу логина и нажимает на нее'''
+    '''The method searches for a button with a link to the login page and clicks on it'''
 
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
 
-    '''Метод ищет кнопку с переходом на страницу логина'''
+    '''The method checks is a link to login page button exist'''
 
     def should_be_login_link(self):
         assert self.is_element_presented(*BasePageLocators.LOGIN_LINK), 'Login link not found'
 
-    '''Метод для открытия страницы в браузере. Browser - из фикстуры, link из файлов с тестами'''
+    '''The method opens page in a browser. Browser is passed from file conftest.py, link is passed from test_files'''
 
     def open(self):
         self.browser.get(self.link)
 
-    '''Метод ищет указанный элемент и перехватывает исключение, если элемент не найден. 
-    В качестве аргументов передаем как мы ищем локатор и сам локатор'''
+    '''The method searches for the specified element and catches an exception if the element is not found.'''
 
     def is_element_presented(self, how_locator, what_locator):
         try:
@@ -43,7 +41,7 @@ class BasePage:
             return False
         return True
 
-    """Метод для решения капчи в появляющемся алерте на страницах с промо"""
+    """Method for solving captcha in alert that appears on promo pages"""
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
@@ -59,36 +57,32 @@ class BasePage:
         except NoAlertPresentException:
             print("No second alert presented")
 
-    """Метод проверяет что элемент не появляется на странице в течении заданного времени"""
+    """The method checks that element not appearing on the page within the specified time."""
 
     def is_not_element_presented(self, how_locator, what_locator, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(expected_conditions.presence_of_element_located((how_locator,
                                                                                                         what_locator)))
-            # Ищем элемент в течении 4 секунд. После того как элемент не появляется - ловим исключение и возвращаем
-            # True - элемент не найден.
         except TimeoutException:
             return True
-        return False  # Если исключение не было поймано - возвращаем False
+        return False
 
-    """Метод проверяет что элемент пропадает после заданного времени"""
+    """The method checks that the element disappears after a specified time."""
 
     def is_disappeared(self, how_locator, what_locator, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1).until_not(
-                expected_conditions.presence_of_element_located((how_locator, what_locator)))  # В течении 4 секунд с
-            # заданным интервалом в 1 секунду проверяем что элемент исчез со страницы. Если за это время элемент не
-            # исчезает, ловим исключение и возвращаем False. Если элемент исчез - возвращаем True
+                expected_conditions.presence_of_element_located((how_locator, what_locator)))
         except TimeoutException:
             return False
         return True
 
-    """Метод позволяет перейти в корзину"""
+    """The method opens the basket page"""
 
     def go_to_basket(self):
         self.browser.find_element(*BasePageLocators.BASKET_LINK).click()
 
-    """ Метод проверяет залогинен ли пользователь"""
+    """The method checks if the user is authorized"""
 
     def should_be_authorized_user(self):
         assert self.is_element_presented(*BasePageLocators.USER_ICON), 'Пользователь незарегистрирован'

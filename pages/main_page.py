@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 
-'''Файл содержит класс MainPage, описывающий главную страницу сайта'''
+"""Class MainPage describes main page and contains methods for working with the Webdriver"""
 
 
 class MainPage(BasePage):
