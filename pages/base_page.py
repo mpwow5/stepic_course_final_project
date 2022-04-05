@@ -85,4 +85,4 @@ class BasePage:
     """The method checks if the user is authorized"""
 
     def should_be_authorized_user(self):
-        assert self.is_element_presented(*BasePageLocators.USER_ICON), 'Пользователь незарегистрирован'
+        assert self.is_element_presented(*BasePageLocators.USER_ICON), 'User authorized'
