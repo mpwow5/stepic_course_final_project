@@ -16,23 +16,23 @@ class BasePage:
         self.link = link
         self.browser.implicitly_wait(timeout)
 
-    '''The method searches for a button with a link to the login page and clicks on it'''
+    """The method searches for a button with a link to the login page and clicks on it"""
 
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
 
-    '''The method checks is a link to login page button exist'''
+    """The method checks is a link to login page button exist"""
 
     def should_be_login_link(self):
         assert self.is_element_presented(*BasePageLocators.LOGIN_LINK), 'Login link not found'
 
-    '''The method opens page in a browser. Browser is passed from file conftest.py, link is passed from test_files'''
+    """The method opens page in a browser. Browser is passed from file conftest.py, link is passed from test_files"""
 
     def open(self):
         self.browser.get(self.link)
 
-    '''The method searches for the specified element and catches an exception if the element is not found.'''
+    """The method searches for the specified element and catches an exception if the element is not found."""
 
     def is_element_presented(self, how_locator, what_locator):
         try:
